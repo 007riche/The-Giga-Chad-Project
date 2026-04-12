@@ -1,0 +1,17 @@
+<main>
+  <app-learning-resources />
+
+  <hr />
+
+  <app-auth  />
+
+<!-- <ng-template appAuth="user" >
+  <p >Shown</p>
+  <p> Complex markup</p>
+</ng-template> -->
+
+<p *appAuth="'guest'" class="protected-content unauthenticated"> Guest User, Welcome, With syntactic Sugar</p>
+<p *appAuth="'admin'" class="protected-content admin"> Tha Administrator User, Power</p>
+<p *appAuth="'user'" class="protected-content authenticated"> Regular User, Welcome</p>
+ 
+</main>

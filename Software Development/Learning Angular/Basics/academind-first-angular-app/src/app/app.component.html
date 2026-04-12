@@ -1,0 +1,58 @@
+<app-header />
+
+<!-- </app-header> -->
+
+<main>
+  <ul id="users">
+    <!-- Refactoring -->
+     <!-- Simpler -->
+    @for (user of users; track user.id) {
+    <li>
+      <app-user [user]="user" [selected]="user.id===selectedUserId" (select)="onSelectedUser($event)" />
+    </li>
+    }
+
+    <!-- Untill Angular 17
+    <li *ngFor="let user of users">
+
+        <app-user [user]="user" (select)="onSelectedUser($event)" />
+        with older than 17th ver.
+      </li> -->
+
+    <!-- Manual enumerating -->
+    <!-- <li>
+      <app-user [user]="users[0]" (select)="onSelectedUser($event)" />
+       [id]="users[0].id" -->
+    <!-- [avatar]="users[0].avatar" -->
+    <!-- [name]="users[0].name" -->
+    <!-- </app-user> -->
+    <!-- </li> -->
+
+    <!-- <li> -->
+    <!-- <app-user [user]="users[1]" (select)="onSelectedUser($event)" /> -->
+    <!-- </li> -->
+    <!-- <li> -->
+    <!-- <app-user [user]="users[2]" (select)="onSelectedUser($event)" /> -->
+    <!-- </li> -->
+  </ul>
+
+  <!-- <app-tasks [userName]="selectedUser ? selectedUser.name : ''" /> -->
+
+  @if (selectedUser) {
+  <app-tasks [selectedUserId]="selectedUser.id"   [userName]="selectedUser.name" />
+  }
+  @else {
+    <p id="fallback">Select a user to see their tasks</p>
+  }
+
+  <!-- Untill Angular 17 -->
+   
+  <!-- <app-tasks *ngIf="selectedUser; else fallback" [userName]="selectedUser!.name" />
+  <ng-template #fallback>
+    <p id="fallback">
+        Rendered in old fashion way of Angular untill The 17th version, <br>
+        Things got simpler
+    </p>
+  </ng-template> -->
+
+</main>

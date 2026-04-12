@@ -1,0 +1,31 @@
+<!-- <div [class.status]="currentStatus ==='offline' ">  << inline >> dynimaic Class binding syntax -->
+<!-- Much granular way of binding class and styles dynamiccally -->
+<div [class]="{
+status: true,
+'status-online': currentStatus() === 'online',
+'status-offline': currentStatus() === 'offline',
+'status-unknown': currentStatus() === 'unknown',
+}"
+
+>
+
+<!-- binding inline css
+[style.fontSize]="50px",
+
+block styling
+[style]="{
+  fontSize: '50px',
+}" -->
+
+
+  @if (currentStatus() === 'online') {
+  <p>Servers are online</p>
+  <p>All systems are operational.</p>
+  } @else if (currentStatus() === 'offline') {
+  <p>Servers are offline</p>
+  <p>Functionality should be restored soon.</p>
+  } @else {
+  <p>Server status is unknown</p>
+  <p>Fetching server status failed.</p>
+  }
+</div>

@@ -1,0 +1,29 @@
+@if (results) {
+<table>
+  <caption>
+    Your Investment Statistics
+  </caption>
+  <thead>
+    <tr>
+      <th scope="col">Year</th>
+      <th scope="col">Investment Value</th>
+      <th scope="col">Investment (Year)</th>
+      <th scope="col">Total Interest</th>
+      <th scope="col">Invested Capital</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (investment of results; track investment.year) {
+    <tr>
+      <th scope="row">{{ investment.year }}</th>
+      <td>{{ investment.valueEndOfYear | currency }}</td>
+      <td>{{ investment.interest | currency }}</td>
+      <td>{{ investment.totalInterest | currency }}</td>
+      <td>{{ investment.totalAmountInvested | currency }}</td>
+    </tr>
+    }
+  </tbody>
+</table>
+} @else {
+<p class="center">Start planning your investment NOW!!</p>
+}

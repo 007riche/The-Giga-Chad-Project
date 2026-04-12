@@ -1,0 +1,48 @@
+<div class="sticky-card">
+  <form (ngSubmit)="onSubmit()" action="">
+    <div class="input-group">
+      <p>
+        <label for="initial-investment">INITIAL INVESTMENT</label>
+        <input
+          type="number"
+          name="initial-investment"
+          id="initial-investment"
+          min="0"
+          value="0"
+          [(ngModel)]="initialInvestment"
+        />
+      </p>
+      <p>
+        <label for="annual-investment">ANNUAL INVESTMENT</label>
+        <input
+          type="number"
+          name="annual-investment"
+          id="annual-investment"
+          min="0"
+          value="0"
+          [(ngModel)]="annualInvestment"
+        />
+      </p>
+    </div>
+
+    <div class="input-group">
+      <p>
+        <label for="expected-return">EXPECTED RETURN</label>
+        <input
+          type="number"
+          name="expected-return"
+          id="expected-return"
+          value="5"
+          min="0"
+          [(ngModel)]="expectedReturn"
+        />
+      </p>
+      <p>
+        <label for="duration">DURATION</label>
+        <input type="number" name="duration" id="duration" value="10" min="0" [(ngModel)]="duration"/>
+      </p>
+    </div>
+
+    <p><button type="submit">CALCULATE</button></p>
+  </form>
+</div>

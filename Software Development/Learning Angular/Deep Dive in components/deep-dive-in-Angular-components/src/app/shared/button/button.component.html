@@ -1,0 +1,10 @@
+<span> <ng-content  /></span> 
+<!-- using Angular content projection -->
+ <span class="icon">
+    <ng-content select="icon" > 
+        <!-- Fallback of the projected content -->
+         >
+    </ng-content>
+ </span>
+<!-- Using basic content projection -->
+<!-- <ng-content select=".icon" />  -->

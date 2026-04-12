@@ -1,0 +1,20 @@
+<!-- <form (ngSubmit)="onSubmit(titleInputTemplateVariable)"> -->
+  <form (ngSubmit)="onSubmit(titleInputTemplateVariable.value, textAreaTemplateVariable.value)"  #formTemplateVar>
+  <app-control label="Title" >
+    <!-- Template variable, created by preceeding the hash symbol infornt of its name, here #titleInputTemplateVariable -->
+     <!-- This var can be accepted through their name without the hash symbol, without implementing any explicit binding -->
+    <input type="text" name="title" id="title"  #titleInputTemplateVariable  #projectContentTemplateVariable />
+  </app-control>
+  <app-control label="Request" >
+    <textarea type="text" name="request" id="request" #textAreaTemplateVariable  #projectContentTemplateVariable></textarea>
+  </app-control>
+  <p>
+    <button appButton>
+      Submit
+      <span ngProjectAs="icon"> ⌲ </span>
+      <!-- <span class="icon"> ⌲ </span> -->
+      <!-- <span> Submit </span>
+      <span class="icon"> ⌲ </span> -->
+    </button>
+  </p>
+</form>
