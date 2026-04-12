@@ -1,0 +1,41 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Windows app development\\Hello project\\HelloWin\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{350A7597-F89E-45C6-BCF0-402E6A3585FC}|HelloWin\\HelloWin.vcxproj|D:\\Windows app development\\Hello project\\HelloWin\\HelloWin\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{350A7597-F89E-45C6-BCF0-402E6A3585FC}|HelloWin\\HelloWin.vcxproj|solutionrelative:HelloWin\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "main.cpp",
+              "DocumentMoniker": "D:\\Windows app development\\Hello project\\HelloWin\\HelloWin\\main.cpp",
+              "RelativeDocumentMoniker": "HelloWin\\main.cpp",
+              "ToolTip": "D:\\Windows app development\\Hello project\\HelloWin\\HelloWin\\main.cpp",
+              "RelativeToolTip": "HelloWin\\main.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-10-15T22:14:54.541Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

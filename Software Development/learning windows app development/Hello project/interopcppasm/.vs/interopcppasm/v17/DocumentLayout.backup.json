@@ -1,0 +1,89 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Windows app development\\Hello project\\interopcppasm\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{3CF9CA23-9A3B-45CA-9FFC-82AFB25950D4}|interopcppasm\\interopcppasm.vcxproj|D:\\Windows app development\\Hello project\\interopcppasm\\interopcppasm\\asmfunctions.asm||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{3CF9CA23-9A3B-45CA-9FFC-82AFB25950D4}|interopcppasm\\interopcppasm.vcxproj|solutionrelative:interopcppasm\\asmfunctions.asm||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3CF9CA23-9A3B-45CA-9FFC-82AFB25950D4}|interopcppasm\\interopcppasm.vcxproj|D:\\Windows app development\\Hello project\\interopcppasm\\interopcppasm\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{3CF9CA23-9A3B-45CA-9FFC-82AFB25950D4}|interopcppasm\\interopcppasm.vcxproj|solutionrelative:interopcppasm\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3CF9CA23-9A3B-45CA-9FFC-82AFB25950D4}|interopcppasm\\interopcppasm.vcxproj|D:\\Windows app development\\Hello project\\interopcppasm\\interopcppasm\\main.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{3CF9CA23-9A3B-45CA-9FFC-82AFB25950D4}|interopcppasm\\interopcppasm.vcxproj|solutionrelative:interopcppasm\\main.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Microsoft\\VC\\v170\\BuildCustomizations\\masm.targets||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "masm.targets",
+              "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Microsoft\\VC\\v170\\BuildCustomizations\\masm.targets",
+              "ToolTip": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Microsoft\\VC\\v170\\BuildCustomizations\\masm.targets",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEUAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003801|",
+              "WhenOpened": "2026-02-12T12:50:38.736Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "main.cpp",
+              "DocumentMoniker": "D:\\Windows app development\\Hello project\\interopcppasm\\interopcppasm\\main.cpp",
+              "RelativeDocumentMoniker": "interopcppasm\\main.cpp",
+              "ToolTip": "D:\\Windows app development\\Hello project\\interopcppasm\\interopcppasm\\main.cpp",
+              "RelativeToolTip": "interopcppasm\\main.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-02-12T12:25:10.71Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "main.h",
+              "DocumentMoniker": "D:\\Windows app development\\Hello project\\interopcppasm\\interopcppasm\\main.h",
+              "RelativeDocumentMoniker": "interopcppasm\\main.h",
+              "ToolTip": "D:\\Windows app development\\Hello project\\interopcppasm\\interopcppasm\\main.h",
+              "RelativeToolTip": "interopcppasm\\main.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2026-02-12T12:19:55.817Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "asmfunctions.asm",
+              "DocumentMoniker": "D:\\Windows app development\\Hello project\\interopcppasm\\interopcppasm\\asmfunctions.asm",
+              "RelativeDocumentMoniker": "interopcppasm\\asmfunctions.asm",
+              "ToolTip": "D:\\Windows app development\\Hello project\\interopcppasm\\interopcppasm\\asmfunctions.asm",
+              "RelativeToolTip": "interopcppasm\\asmfunctions.asm",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-02-12T12:19:22.334Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
