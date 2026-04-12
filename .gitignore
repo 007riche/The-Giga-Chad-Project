@@ -6,8 +6,9 @@
 /*/.git
 /*/node_modules
 /*/.angular
-.*/*.zip
-.*/*.rar
+/*/.vscode
+*.zip
+*.rar
 
 #Local three js library, included localy to load it and use it
 /Software Development/Learning three js/three.js-master/
