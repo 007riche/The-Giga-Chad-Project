@@ -1,2 +1,2 @@
-# Untracked-learning-git
-My repository for learning git
+# Learning jenkins
+This folder contains resources on jenkins
