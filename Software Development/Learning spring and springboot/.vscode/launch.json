@@ -1,0 +1,54 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-MobileAppWsApplication<mobile-app-ws>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.appsdeveloperblog.app.ws.MobileAppWsApplication",
+            "projectName": "mobile-app-ws",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-PhotoAppApiAccountManagementApplication<photo_app_api_account_management>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.appsdeveloperblog.photoapp.api.account.PhotoAppApiAccountManagementApplication",
+            "projectName": "photo_app_api_account_management",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-ApiGatewayApplication<api_gateway>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.appsdeveloperblog.cloud.api.gateway.api_gateway.ApiGatewayApplication",
+            "projectName": "api_gateway",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-PhotoAppDiscoveryServiceApplication<photo_app_discovery_service>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.appsdeveloperblog.photoapp.discovery.PhotoAppDiscoveryServiceApplication",
+            "projectName": "photo_app_discovery_service",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-PhotoAppApiUsersApplication<photo_app_api_users>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.appsdeveloperblog.photoapp.api.users.PhotoAppApiUsersApplication",
+            "projectName": "photo_app_api_users",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
