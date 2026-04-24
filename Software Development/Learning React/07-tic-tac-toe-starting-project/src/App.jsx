@@ -125,7 +125,7 @@ function App() {
         {(winner || hasDraw) && <GameOver winner={winner} onRestart={handleRestartGame} />}
         {/* <GameBoard onSelectCell={handleSelectCell} activePlayerSymbol={activePlayer} /> */}
         <GameBoard onSelectCell={handleSelectCell} gameBoard={gameBoard} />
-
+        {/* Test commit */}
       </div>
 
       {/* Logs section */}
