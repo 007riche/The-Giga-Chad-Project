@@ -71,7 +71,8 @@ header img {
   color: #6b7280;
 }
 
-.controls input {
+/* .controls  */
+input {
   width: 100%;
   padding: 0.75rem 1rem;
   line-height: 1.5;

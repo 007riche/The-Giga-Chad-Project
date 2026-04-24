@@ -7,19 +7,28 @@ const ActionClassContainer = styled.div`
   gap: 1rem;
   `;
 
+// {
+//   // console.log($invalid)
+//   // console.log(` ${ $invalid } ==> ${ $invalid ? "#ef4444" : "#374151" } `);
+//   if ($invalid) return "#f73f3f";
+//   else return "transparent";
+// }
+// ($invalid ? "#f73f3f" : "transparent")
+
 const StyledInput = styled.input`
   width: 100%;
   padding: 0.75rem 1rem;
   line-height: 1.5;
-  background-color: ${({ $invalid }) => ($invalid ? "#f73f3f" : "#d1d5db")};
+  background-color: ${({ $invalid }) => ($invalid ? '#fed2d2' : '#d1d5db')};
   color: ${({ $invalid }) => ($invalid ? "#ef4444" : "#374151")};
-  border: 1px solid ${({ $invalid }) => {
-    console.log($invalid)
-    console.log($invalid ? "#ef4444" : "#374151");
+  border: 1px solid ${({ $invalid }) =>
+  // ($invalid ? "#f73f3f" : "transparent")
+  {
+    // console.log($invalid)
+    console.log(`Invalid:${$invalid} ==> ${$invalid}`);
     if ($invalid) return "#f73f3f";
     else return "transparent";
   }
-  // ($invalid ? "#f73f3f" : "transparent")
   };
   border-radius: 0.25rem;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
@@ -61,10 +70,10 @@ export default function AuthInputs() {
           values on CSS properties
           */}
           <label className={`label ${emailNotValid ? 'invalid' : ''}`}>Email</label>
-          <StyledInput
+          <input
             type="email"
-            // className={emailNotValid ? 'invalid' : undefined}
-            $invalid={emailNotValid}
+            className={emailNotValid ? 'invalid' : undefined}
+            // $invalid={emailNotValid}
             onChange={(event) => handleInputChange('email', event.target.value)}
           />
         </p>
@@ -87,7 +96,7 @@ export default function AuthInputs() {
             // return retVal;
             // }}
 
-            $invalid={passwordNotValid}
+            $invalid={submitted && enteredPassword.trim().length < 6}
 
             // className={passwordNotValid ? 'invalid' : undefined}
             // vanilla css dynamic styling
