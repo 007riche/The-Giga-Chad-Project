@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { styled } from "styled-components";
+import Input from './Input';
+import Button from './Button';
 
 const ActionClassContainer = styled.div`
   display: flex;
@@ -7,32 +9,6 @@ const ActionClassContainer = styled.div`
   gap: 1rem;
   `;
 
-// {
-//   // console.log($invalid)
-//   // console.log(` ${ $invalid } ==> ${ $invalid ? "#ef4444" : "#374151" } `);
-//   if ($invalid) return "#f73f3f";
-//   else return "transparent";
-// }
-// ($invalid ? "#f73f3f" : "transparent")
-
-const StyledInput = styled.input`
-  width: 100%;
-  padding: 0.75rem 1rem;
-  line-height: 1.5;
-  background-color: ${({ $invalid }) => ($invalid ? '#fed2d2' : '#d1d5db')};
-  color: ${({ $invalid }) => ($invalid ? "#ef4444" : "#374151")};
-  border: 1px solid ${({ $invalid }) =>
-  // ($invalid ? "#f73f3f" : "transparent")
-  {
-    // console.log($invalid)
-    console.log(`Invalid:${$invalid} ==> ${$invalid}`);
-    if ($invalid) return "#f73f3f";
-    else return "transparent";
-  }
-  };
-  border-radius: 0.25rem;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-  `;
 
 export default function AuthInputs() {
   const [enteredEmail, setEnteredEmail] = useState('');
@@ -69,42 +45,27 @@ export default function AuthInputs() {
           approach rather than the "&& chaining" to avoid injecting invalid 
           values on CSS properties
           */}
-          <label className={`label ${emailNotValid ? 'invalid' : ''}`}>Email</label>
-          <input
+          {/* <label className={`label ${emailNotValid ? 'invalid' : ''}`}>Email</label> */}
+          <Input
+            label="Email"
+            invalid={emailNotValid}
             type="email"
-            className={emailNotValid ? 'invalid' : undefined}
+            // className={emailNotValid ? 'invalid' : undefined}
             // $invalid={emailNotValid}
             onChange={(event) => handleInputChange('email', event.target.value)}
           />
         </p>
         <p>
-          <label>Password</label>
-          <StyledInput
-            // <input 
+          {/* <label>Password</label> */}
+          <Input
+            label="Password"
+            invalid={passwordNotValid}
             type="password"
-            // the "invalid" prop should the set to be accessible 
-            //inside the defintion of the styled component
-            // prefix the prop with a '$' symbol to avoid clashing with internal
-            // pre-built prop in the basic markup i.e. $invalid
-
-            // any forwarded prop can be accessed by destructuring
-            // all the forwarded props in anonymous function style
-            // i.e. ${({propName}) =>()} for single line body
-            // or
-            // ${({propName}) => {
-            // processing... 
-            // return retVal;
-            // }}
-
-            $invalid={submitted && enteredPassword.trim().length < 6}
-
-            // className={passwordNotValid ? 'invalid' : undefined}
-            // vanilla css dynamic styling
-
             onChange={(event) =>
               handleInputChange('password', event.target.value)
             }
           />
+
           {/* </StyledInput> */}
         </p>
       </div>
@@ -138,10 +99,12 @@ export default function AuthInputs() {
           eg: def@StyledInput (color, border-color, background-color)
 
          */}
+        {/* <Button type="button" className="text-button"> */}
         <button type="button" className="text-button">
           Create a new account
         </button>
-        <button className='button' onClick={handleLogin}>Sign In</button>
+        {/* <button className='button' onClick={handleLogin}>Sign In</button> */}
+        <Button onClick={handleLogin}>Sign In</Button>
         {/* </div> */}
       </ActionClassContainer>
     </div>
