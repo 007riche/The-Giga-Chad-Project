@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext, useReducer } from "react";
 import { useState } from "react";
 import { DUMMY_PRODUCTS } from "../dummy-products";
 
@@ -16,7 +16,18 @@ export const CartContext = createContext({
     updateItemQuantity: () => { },
 });
 
+// The callBack the reducer has to use 
+function shoppingCartReducer(state, action) { return state; }
+
 export default function CartContextProvider({ children }) {
+    // using reducer hook to manage the state
+    const [shoppingCartReducerState, shoppingCartDispatch] = useReducer(
+        shoppingCartReducer,
+        {
+            items: [],
+        }
+    );
+
     const [shoppingCart, setShoppingCart] = useState({
         items: [],
     });
@@ -79,6 +90,8 @@ export default function CartContextProvider({ children }) {
 
     const ctxValue = {
         items: shoppingCart.items,
+        // items: shoppingCartReducerState.items,
+
         addItemToCart: handleAddItemToCart,
         updateItemQuantity: handleUpdateCartItemQuantity,
     };
