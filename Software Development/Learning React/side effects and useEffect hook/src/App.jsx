@@ -1,23 +1,65 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import Places from './components/Places.jsx';
 import { AVAILABLE_PLACES } from './data.js';
 import Modal from './components/Modal.jsx';
 import DeleteConfirmation from './components/DeleteConfirmation.jsx';
 import logoImg from './assets/logo.png';
+import { sortPlacesByDistance } from './loc.js';
+
+const storedIds = JSON.parse(localStorage.getItem("selectedPlaces")) || [];
+const storedPlaces = storedIds.map(
+  (id) => AVAILABLE_PLACES.find((place) => place.id === id)
+);
 
 function App() {
-  const modal = useRef();
+  // const modal = useRef();
+  const [modalIsOpen, setModalIsOpen] = useState(false);
   const selectedPlace = useRef();
-  const [pickedPlaces, setPickedPlaces] = useState([]);
+  const [pickedPlaces, setPickedPlaces] = useState(storedPlaces);
+  const [nearByPlaces, setNearByPlaces] = useState([]);
+
+  // Example of side effect
+  // we might need to know the user's geolocation, but we do not
+  // want the demand to trigger the re-rendering of the APP
+  // component, and also as side note, if it had to trigger the re-rendering
+  // we might get into an infinite loop (firstRend->geoloc->ReRend->geoloc->ReRend->geoloc
+  // ->ReRend ....)
+  // navigator.geolocation.getCurrentPosition((position) => {
+  //   const sortedPlacesByDistance = sortPlacesByDistance(
+  //     AVAILABLE_PLACES,
+  //     position.coords.latitude,
+  //     position.coords.latitude);
+
+  //   setNearByPlaces(sortedPlacesByDistance);
+  // });
+
+  // solution: useEffect
+  useEffect(
+    () => {
+      navigator.geolocation.getCurrentPosition((position) => {
+        const sortedPlacesByDistance = sortPlacesByDistance(
+          AVAILABLE_PLACES,
+          position.coords.latitude,
+          position.coords.latitude);
+
+        setNearByPlaces(sortedPlacesByDistance);
+      }); // Executed only after the APP component rendering is done
+    },
+    [] // Array of dependencies
+  ); // costs execution computation, use this with caution
+  // Usefull though to prevent infinite loop
 
   function handleStartRemovePlace(id) {
-    modal.current.open();
+    // modal.current.open();
+    setModalIsOpen(true);
     selectedPlace.current = id;
   }
 
   function handleStopRemovePlace() {
-    modal.current.close();
+    // modal.current.close();
+    setModalIsOpen(false);
+
   }
 
   function handleSelectPlace(id) {
@@ -28,18 +70,37 @@ function App() {
       const place = AVAILABLE_PLACES.find((place) => place.id === id);
       return [place, ...prevPickedPlaces];
     });
+
+    // Example of side effect that does not need useEffect
+    const storedIds = JSON.parse(localStorage.getItem("selectedPlaces")) || [];
+    if (storedIds.indexOf(id) === -1) {
+      localStorage.setItem(
+        'selectedPlaces',
+        JSON.stringify([id, ...storedIds])
+      );
+    }
+
   }
 
   function handleRemovePlace() {
     setPickedPlaces((prevPickedPlaces) =>
       prevPickedPlaces.filter((place) => place.id !== selectedPlace.current)
     );
-    modal.current.close();
+    // modal.current.close();
+    setModalIsOpen(false);
+    const storedIds = JSON.parse(localStorage.getItem("selectedPlaces")) || [];
+    localStorage.setItem('selectedPlaces',
+      JSON.stringify(storedIds.filter((id) => id !== selectedPlace))
+    );
+
   }
 
   return (
     <>
-      <Modal ref={modal}>
+      <Modal
+        // ref={modal}
+        open={modalIsOpen}
+      >
         <DeleteConfirmation
           onCancel={handleStopRemovePlace}
           onConfirm={handleRemovePlace}

@@ -1,0 +1,1 @@
+`Side effects` in react are tasks that need to get executed in a component without impacting that component rendering cycle (I guess an example is these kind of detached background function that in a component) 
