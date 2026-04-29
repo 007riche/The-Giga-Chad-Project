@@ -43,10 +43,15 @@ function App() {
         </section> */}
         <ConfigureCounter onSet={handleSetCount /** This now scopes the 
           execution to this sub component */ } />
-        <Counter initialCount={chosenCount} />
+        <Counter initialCount={chosenCount} key={chosenCount /** the state as key triggers the
+           counter re-exec, but should be stricly mapped to only 
+           a single element in the rendered DOM */} />
         {/* <Counter initialCount={chosenCount} />   Linked to the top instance */}
         {/* because both are affected by the same state object 'chosenCount' */}
-        <Counter initialCount={0} />  {/* Isolated */}
+        <Counter initialCount={0}
+        // key={chosenCount} will cause an error, as already assigned to another
+        // component, here on the above Counter 
+        />  {/* Isolated */}
       </main>
     </>
   );

@@ -14,6 +14,7 @@
 </pre>
 
 The base is the lifted state within minimized changes to avoid the re-exec of children (towards the down peak) 
+The smaller the base, the Better?
 
 ## Good Composition matters
 - ### creating scopoed sub-components with their re-exec conditon and lifting state up
@@ -21,6 +22,7 @@ The base is the lifted state within minimized changes to avoid the re-exec of ch
 - ### Scoping the re-execution to the least child as possible in the component hierachy
  
 - ### Scoping state on elements with keys (generally on dynamcally generated elements such as li for instance)
+Keys can be used to strictly map elements in the DOM tree, help with the state management of elements, used in resetting elements (usecase: the key on the Counter component in the APP component)
 
 
 ## Avoid unecessary component function re-executions
