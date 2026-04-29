@@ -24,6 +24,13 @@ The smaller the base, the Better?
 - ### Scoping state on elements with keys (generally on dynamcally generated elements such as li for instance)
 Keys can be used to strictly map elements in the DOM tree, help with the state management of elements, used in resetting elements (usecase: the key on the Counter component in the APP component)
 
+- ### Make good use of state updation, taking into account the previous state
+prefer this updation `setState(prevState => { // updation with new state})` method over this method: `setState(newState)`. the latter usage may cause updation in next cycle if for instance immediate subsequent updation happen like this
+<pre> <code>
+        setState(newState); // updated, even this can be dangerous or lead to errors
+        setState(newState); // will be update in next updation cycle
+    </code></pre>
+
 
 ## Avoid unecessary component function re-executions
 - ### wrapping components with the memo() from react package
@@ -42,4 +49,8 @@ memo looses its precedence on a triggering evaluation set by passed to the actua
 
 ## Not to abuse of the use of React Hooks
 Even though their usage can be good, using them do cost some performance, and the should only where the tracking of changes of their dependencies evaluation do matter and avoid where they are not (typically where the re-exec will not occur or least of the time, for instance, in a component that (should) never rebuilt through the app lifecycle like a stateless component )
+
 ## Optimization frameworks
+Example: MillionJS
+installation ```$npm install million```
+Refer to its Docs

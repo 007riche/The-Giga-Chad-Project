@@ -52,7 +52,7 @@ const Counter = memo(function Counter({ initialCount }) {
   // const [counterChanges, setCounterChanges] = useState([initialCount]);
   const [counterChanges, setCounterChanges] = useState([{
     value: initialCount,
-    id: Math.random() * 1000
+    id: Math.random() * 1000, // used as key to uniquely map to element
   }]);
 
 
