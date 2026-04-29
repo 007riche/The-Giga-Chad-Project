@@ -24,7 +24,12 @@ export default function CounterHistory({ history }) {
   return (
     <ol>
       {history.map((count, index) => (
-        <HistoryItem key={index} count={count} />
+        <HistoryItem key={count.id}
+          // key={index /* this key identify elem by their positons but 
+          // do not lock them at a reference in memory level*/} 
+          // count={count} />
+          count={count.value} />
+
       ))}
     </ol>
   );
