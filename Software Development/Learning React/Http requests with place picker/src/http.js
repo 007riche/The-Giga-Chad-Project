@@ -13,10 +13,22 @@ export async function fetchAvailablePlaces() {
     return jsonResponseData.places;
 }
 
+export async function fetchUserPlaces() {
+    const response = await fetch(BASE_URL + userPlacesEndpoint);
+    const jsonResponseData = await response.json();
+
+    if (!response.ok) {
+        throw new Error("Failed to fetch user's places data");
+    }
+    return jsonResponseData.places;
+}
+
 export async function updateUserPlaces(places) {
+    console.log("update from http: ", places);
+
     const response = await fetch(BASE_URL + userPlacesEndpoint, {
         method: 'PUT',
-        body: JSON.stringify({ places: places }),
+        body: JSON.stringify({ places }),
         headers: {
             'Content-Type': 'application/json'
         }
