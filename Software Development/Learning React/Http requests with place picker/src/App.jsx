@@ -6,8 +6,8 @@ import DeleteConfirmation from './components/DeleteConfirmation.jsx';
 import logoImg from './assets/logo.png';
 import AvailablePlaces from './components/AvailablePlaces.jsx';
 import { fetchUserPlaces, updateUserPlaces } from './http.js';
-import ErrorPage from './Error.jsx'
-import { useFetch } from './custom-hooks/useFetch.js'
+import ErrorPage from './Error.jsx';
+import useFetch from './custom-hooks/useFetch.js';
 
 function App() {
   const selectedPlace = useRef();
@@ -19,7 +19,10 @@ function App() {
 
   // const [isFecthing, setIsFetching] = useState(false);
   // const [error, setError] = useState();
-  const [isFecthing, error, fetchedData] = useFetch();
+  const { isFecthing, error,
+    fetchedData: userPlaces,
+    setFetchedData: setUserPlaces } =
+    useFetch(fetchUserPlaces, []);
 
   useFetch();
 
@@ -71,7 +74,7 @@ function App() {
     }
 
     setModalIsOpen(false);
-  }, [userPlaces]);
+  }, [userPlaces, setUserPlaces]);
 
   function handleError() {
     setErrorUpdatingPlaces(null);
@@ -122,7 +125,9 @@ function App() {
           />
         }
 
-        <AvailablePlaces onSelectPlace={handleSelectPlace} />
+        <AvailablePlaces
+          onSelectPlace={handleSelectPlace}
+        />
       </main>
     </>
   );
