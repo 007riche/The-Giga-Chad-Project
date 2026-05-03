@@ -1,6 +1,33 @@
 export default function Signup() {
+
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    // Provided by the browser
+    const formData = new FormData(event.target);
+    // Form's elements bond by the 'name' attribute 
+    // in other to be accessible as the form's children 
+
+    // Verbosed way of accessing form's elements, one by one
+    // const enteredEmail = formData.get("emai");
+    // const enteredPassword = formData.get("password");
+    // creating a holding values object on the fly as needed
+    // pure JS
+    const data = Object.fromEntries(formData.entries());
+    // enumarating and generating
+    // But can loose data, in case such as multi-values input field for instance
+    console.log(data);
+
+    // Extracting an example of multi-values input value:
+    const acquisitionChannel = formData.getAll('acquisition');
+
+    data.acquisition = acquisitionChannel;
+    console.log(data);
+
+  }
+
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <h2>Welcome on board!</h2>
       <p>We just need a little bit of data from you to get you started 🚀</p>
 
