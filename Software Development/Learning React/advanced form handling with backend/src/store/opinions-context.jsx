@@ -44,6 +44,7 @@ export function OpinionsContextProvider({ children }) {
         method: "POST",
       }
     );
+
     if (!response.ok) { return }
 
     setOpinions((prevOpinions) => {

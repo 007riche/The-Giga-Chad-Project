@@ -1,15 +1,35 @@
 import { use } from "react";
 import { OpinionsContext } from "../store/opinions-context";
 import { useActionState } from "react";
+import { useOptimistic } from "react";
 
 export function Opinion({ opinion: { id, title, body, userName, votes } }) {
   const { upvoteOpinion, downvoteOpinion } = use(OpinionsContext);
 
+  // UI can be updated optimistically based on the change of states,
+  // through useOptimistic() hook 
+  // It provides much faster UI updation, while regular 
+  // state updation operations are still going on in the background,
+  // Works in roughly two steps, uses the optimistic state to update the UI,
+  // and replace that optimistic state by the actual state 
+  // after the scheduled state updations have been run, which can 
+  // either resolve into new state value if successful or old state 
+  // value if failed, letting the dev not manually handling this kind 
+  // of edge cases
+  const [optimisticVotes, setOptimisticVotes] = useOptimistic(
+    votes, // The actual state passed as init state
+    (prevVote, mode) => (mode === 'up' ? prevVote + 1 : prevVote - 1)
+    // updation call back recieving the previous state and 
+    // var args list as needed for updation, here just one, 'mode' 
+  );
+
   async function upVoteAction() {
+    setOptimisticVotes('up');
     await upvoteOpinion(id);
   }
 
   async function downVoteAction() {
+    setOptimisticVotes('down');
     await downvoteOpinion(id);
   }
 
@@ -50,7 +70,8 @@ export function Opinion({ opinion: { id, title, body, userName, votes } }) {
           </svg>
         </button>
 
-        <span>{votes}</span>
+        {/* <span>{votes}</span> */}
+        <span>{optimisticVotes}</span> {/* Optimistic state */}
 
         <button
           formAction={downvoteFormAction}
