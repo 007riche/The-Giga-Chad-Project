@@ -1,5 +1,6 @@
 export default function Signup() {
 
+
   function handleSubmit(event) {
     event.preventDefault();
 
@@ -24,6 +25,9 @@ export default function Signup() {
     data.acquisition = acquisitionChannel;
     console.log(data);
 
+    // Resetting the form's inputs through 
+    // the event set on the form
+    // event.target.reset();
   }
 
   return (
