@@ -1,4 +1,22 @@
+import { use } from "react";
+import { OpinionsContext } from "../store/opinions-context";
+import { useActionState } from "react";
+
 export function Opinion({ opinion: { id, title, body, userName, votes } }) {
+  const { upvoteOpinion, downvoteOpinion } = use(OpinionsContext);
+
+  async function upVoteAction() {
+    await upvoteOpinion(id);
+  }
+
+  async function downVoteAction() {
+    await downvoteOpinion(id);
+  }
+
+  const [upvoteFormState, upvoteFormAction, upvotePending] = useActionState(upVoteAction);
+  const [downvoteFormState, downvoteFormAction, downvotePending] = useActionState(downVoteAction);
+
+  let pending = upvotePending || downvotePending;
   return (
     <article>
       <header>
@@ -7,7 +25,14 @@ export function Opinion({ opinion: { id, title, body, userName, votes } }) {
       </header>
       <p>{body}</p>
       <form className="votes">
-        <button>
+        {/* // Individual actionionable elements such as buttons
+        //  inside the form can also have 
+        // actions just like the encompassing form  through the attribute
+        // formAction */}
+        <button
+          formAction={upvoteFormAction}
+          disabled={pending}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -27,7 +52,10 @@ export function Opinion({ opinion: { id, title, body, userName, votes } }) {
 
         <span>{votes}</span>
 
-        <button>
+        <button
+          formAction={downvoteFormAction}
+          disabled={pending}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
