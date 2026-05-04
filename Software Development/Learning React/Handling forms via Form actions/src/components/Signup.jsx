@@ -1,6 +1,72 @@
+import { useActionState } from "react";
+import { hasMinLength, isEmail, isEqualToOtherValue, isNotEmpty } from "../util/validation"
+
+
+// We can also handle form validation by using a hook provided by react
+// starting at the version 19, useActionState
 export default function Signup() {
+  // the hanlder function of the form using action for 
+  // handling the submission receives a form's data object 
+  // instead of event set on that form
+  // Also name attribute has to be set on each form's
+  //  element to be part of that form
+
+  // Note: action is just a default support from the browser
+  // function handleSubmit(formData) {
+  // Edited to be use as input to useActionState argument, 
+  // which handles validation functions passed as argument 
+  // differently as classic function call, 
+  // take into account the previous state, just as other hooks
+  function handleSubmit(prevFormData, formData) {
+    // event.preventDefault();
+    const email = formData.get("email");
+    const password = formData.get("password");
+    const confirmPassword = formData.get("confirm-password");
+    const firstName = formData.get("first-name");
+    const lastName = formData.get("last-name");
+    const role = formData.get("role");
+    const terms = formData.get("terms");
+    const acquisitionChannel = formData.getAll("acquistion");
+
+    let errors = [];
+    if (!isEmail(email)) {
+      errors.push('Invalid email address');
+    }
+
+    if (!isNotEmpty(password) && !hasMinLength(password, 6)) {
+      errors.push('You must provide a password with at least six characters.');
+    }
+
+    if (!isEqualToOtherValue(password, confirmPassword)) {
+      errors.push('Passwords do not match');
+    }
+
+    if (!isNotEmpty(firstName) || !isNotEmpty(lastName)) {
+      errors.push('Please provide both your first and last name');
+    }
+
+    if (!isNotEmpty(role)) {
+      errors.push('Please select a role');
+    }
+
+    if (!terms) {
+      errors.push('You must agrre to the terms and conditions.');
+    }
+
+    if (acquisitionChannel.length === 0) {
+      errors.push('Please select at least one acquitsition channel');
+    }
+
+    if (errors.length > 0) {
+      return { errors };
+    }
+    return { errors: null }
+  }
+
+  const [formState, formAction] = useActionState(handleSubmit, { errors: null });
+
   return (
-    <form>
+    <form action={formAction}>
       <h2>Welcome on board!</h2>
       <p>We just need a little bit of data from you to get you started 🚀</p>
 
@@ -84,6 +150,13 @@ export default function Signup() {
           agree to the terms and conditions
         </label>
       </div>
+
+      {
+        formState.errors &&
+        <ul className="error">
+          {formState.errors.map((error) => (<li key={error}>{error}</li>))}
+        </ul>
+      }
 
       <p className="form-actions">
         <button type="reset" className="button button-flat">
