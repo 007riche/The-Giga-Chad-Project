@@ -10,7 +10,7 @@ async function sendHttpRequest(url, config) {
         );
     }
 
-    return response;
+    return responseData;
 }
 
 export default function useHttp(url, config, initialState) {
@@ -21,6 +21,7 @@ export default function useHttp(url, config, initialState) {
     const sendRequest = useCallback(
         async function sendRequest() {
             setIsLoading(true);
+            console.log("isLoading: ", isLoading);
             try {
                 const responseData = await sendHttpRequest(url, config);
                 setData(responseData);
