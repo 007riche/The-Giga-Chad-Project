@@ -1,22 +1,20 @@
 import { useEffect, useState } from "react";
 import MealItem from "./MealItems";
+import useHttp from "../hooks/useHttp";
+
+// Outside of the component function to avoid recreating it as a new object 
+// each time the com fx re-renders (that usually create infinite loops)
+const requestConfig = {};
 
 export default function Meals() {
-    const [loadeMeals, setLoadedMeals] = useState([]);
+    const { data: loadeMeals,
+        isLoading,
+        error
+    } = useHttp('http://localhost:3000/meals', requestConfig, []);
 
-    useEffect(() => {
-        async function fetchMeals() {
-            const response = await fetch('http://localhost:3000/meals');
-            if (!response.ok) {
-                // return
-            }
-            const meals = await response.json();
-            setLoadedMeals(meals);
-        }
-
-        fetchMeals();
-
-    }, []);
+    if (isLoading) {
+        return <p>Fecthing data, please have patience...</p>
+    }
 
     return (
         <ul id="meals">
