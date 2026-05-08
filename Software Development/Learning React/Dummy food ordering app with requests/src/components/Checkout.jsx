@@ -35,6 +35,18 @@ export default function Checkout() {
         actions = <span>Sending your order...</span>
     }
 
+    if (data && !error) {
+        return <Modal open={userProgessCtx.progress === 'checkout'}
+            onClose={handleClose}>
+            <h2>Order successfully received!</h2>
+            <p>Your order has been successfully submited.</p>
+            <p>We handle the rest!</p>
+            <p className="modal-actions">
+                <Button onClick={handleClose}>Okay</Button>
+            </p>
+        </Modal>
+    }
+
     function handleClose() {
         userProgessCtx.hideCheckout()
     }
