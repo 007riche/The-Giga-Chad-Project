@@ -5,12 +5,35 @@ import { currencyFormatter } from "../utils/formatting";
 import Input from "./Input";
 import Button from "./UI/Button";
 import UserProgessContext from "../store/UserProgresContext";
+import useHttp from "../hooks/useHttp";
+import Error from "./ErrorPage";
+
+
+// Minimum request payload
+const requestConfig = {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    }
+};
 
 export default function Checkout() {
     const cartCtx = useContext(CartContext);
     const userProgessCtx = useContext(UserProgessContext);
 
+    const { data, isLoading: isSending, error, sendRequest } =
+        useHttp('http://localhost:3000/orders', requestConfig);
+
     const cartTotal = cartCtx.items.reduce((totalPrice, item) => totalPrice + item.quantity * item.price, 0)
+
+    let actions = (<>
+        <Button type="button" textOnly onClick={handleClose}>Close</Button>
+        <Button>Submit Order</Button>
+    </>);
+
+    if (isSending) {
+        actions = <span>Sending your order...</span>
+    }
 
     function handleClose() {
         userProgessCtx.hideCheckout()
@@ -20,18 +43,14 @@ export default function Checkout() {
         event.preventDefault();
         const fd = new FormData(event.target);
         const customerData = Object.fromEntries(fd.entries());
-        fetch('http://localhost:3000/orders', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
+
+        sendRequest(
+            JSON.stringify({
                 order: {
                     items: cartCtx.items,
                     customer: customerData
                 }
-            })
-        });
+            }));
     }
 
     return (
@@ -49,9 +68,9 @@ export default function Checkout() {
                     <Input label="Postal Code" type="text" id="postal-code" />
                     <Input label="City" type="text" id="city" />
                 </div>
+                {error && <Error title="Failed to submit your order" message={error} />}
                 <p className="modal-actions">
-                    <Button type="button" textOnly onClick={handleClose}>Close</Button>
-                    <Button>Submit Order</Button>
+                    {actions}
                 </p>
             </form>
         </Modal>
