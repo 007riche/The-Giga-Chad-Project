@@ -57,9 +57,10 @@ export default function Checkout() {
         clearRequestData();
     }
 
-    function handleSubmit(event) {
+    // function handleSubmit(event) {
+    function checkoutAction(fd) {
         event.preventDefault();
-        const fd = new FormData(event.target);
+        // const fd = new FormData(event.target);
         const customerData = Object.fromEntries(fd.entries());
 
         sendRequest(
@@ -75,7 +76,8 @@ export default function Checkout() {
         <Modal open={userProgessCtx.progress === 'checkout'}
             onClose={handleClose}
         >
-            <form onSubmit={handleSubmit}>
+            {/* <form onSubmit={handleSubmit}> */}
+            <form action={checkoutAction}>
                 <h2>Checkout</h2>
                 <p>Total amount: {currencyFormatter.format(cartTotal)} </p>
                 <Input label="Full name" type="text" id="name" />
