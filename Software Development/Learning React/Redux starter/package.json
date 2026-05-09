@@ -1,0 +1,14 @@
+{
+  "name": "redux-starter",
+  "version": "1.0.0",
+  "description": "A small package for practicing redux",
+  "main": "redux-demo.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "007riche",
+  "license": "MIT",
+  "dependencies": {
+    "redux": "^5.0.1"
+  }
+}
