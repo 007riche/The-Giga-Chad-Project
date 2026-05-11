@@ -45,3 +45,8 @@ To install redux: `$npm install redux react-redux`
 
 How to pass argument or a payload to action to the reducer action types?
 setting them on the action object as its properties
+
+In reducer function, the state should be immutable, If update is needed, a new store must be created containing the updated values, to avoid accidental edition of the states contained. The store remaing the global app state
+
+## Redux toolkit
+Install: ```$npm install @reduxjs/toolkit```
