@@ -42,3 +42,6 @@ Redux is not react specific package, but rather JS related.
 <br/>
 To install redux: `$npm install redux react-redux`
 @react-redux connects the redux to react
+
+How to pass argument or a payload to action to the reducer action types?
+setting them on the action object as its properties
