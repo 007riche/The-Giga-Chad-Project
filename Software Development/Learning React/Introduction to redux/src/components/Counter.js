@@ -1,7 +1,7 @@
 import { connect, useDispatch, useSelector } from 'react-redux';
 import classes from './Counter.module.css';
 import { Component } from 'react';
-import { counterActions, authActions } from '../store/index';
+import { counterActions } from '../store/counter-slice';
 
 const Counter = () => {
   //access directly the redux store

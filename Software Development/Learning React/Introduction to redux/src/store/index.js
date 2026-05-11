@@ -1,58 +1,14 @@
-import { configureStore, createSlice } from "@reduxjs/toolkit";
+import { configureStore, } from "@reduxjs/toolkit";
 import { createStore } from "redux";
 
+import authReducer from "./auth-slice";
+import counterReducers from "./counter-slice";
+
+// Redux
 const initialCounterState = {
     counter: 0,
     showCounter: true,
 };
-
-// Redux toolkit way
-// To create and manage parts of the store
-const counterSlice = createSlice({
-    name: 'counter', // one state of the store
-    initialState: initialCounterState, // initialization
-    reducers: { // define all the reducers on that state
-        // they receive the state, and the action even 
-        // though some of them are omitted because not used
-        increment(state) { // 
-            state.counter++; // This normally is prohibited, because
-            // mutating directly the state,
-            // But, BTS, @reduxToolkit, creates new state object with this 
-            // updation and returns it (function as a wrapper around our 
-            // manipulations on the state)
-        },
-        decrement(state) { // 
-            state.counter--;
-        },
-
-        stepper(state, action) { // 
-            // The payload field in action is reserved for 
-            // transmitting payload to reducers
-            state.counter =
-                eval(`${state.counter} ${action.payload.operator} ${action.payload.step}`);
-            console.log("Stepper through Redux Toolkit");
-        },
-        toggle(state) { // 
-            state.showCounter = !state.showCounter;
-        },
-    }
-});
-
-const initialAuthState = {
-    isAuthenticated: false
-};
-
-const authSlice = createSlice({
-    name: 'authentication',
-    initialState: initialAuthState,
-    reducers: {
-        login(state) { state.isAuthenticated = true; },
-        logout(state) { state.isAuthenticated = false; }
-    }
-});
-
-
-// Redux
 const counterReducer = (state = initialCounterState, action) => {
     if (action.type === 'increment') {
         // Like mutating here
@@ -110,13 +66,15 @@ const store = configureStore({ // Configure global state
 
         // reducer: counterSlice.reducer // Single slice
         // Map all your reducers here
-        counter: counterSlice.reducer,
-        auth: authSlice.reducer,
+        // counter: counterSlice.reducer,
+        // auth: authSlice.reducer,
+        counter: counterReducers,
+        auth: authReducer,
     }
 });
 
 // Slice actions
-export const counterActions = counterSlice.actions;
-export const authActions = authSlice.actions;
+// export const counterActions = counterSlice.actions;
+// export const authActions = authSlice.actions;
 
 export default store;
