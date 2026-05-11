@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { configureStore, createSlice } from "@reduxjs/toolkit";
 import { createStore } from "redux";
 const initialState = {
     counter: 0,
@@ -7,7 +7,7 @@ const initialState = {
 
 // Redux toolkit way
 // To create and manage parts of the store
-createSlice({
+const counterSlice = createSlice({
     name: 'counter', // one state of the store
     initialState: initialState, // initialization
     reducers: { // define all the reducers on that state
@@ -23,8 +23,13 @@ createSlice({
         decrement(state) { // 
             state.counter--;
         },
+
         stepper(state, action) { // 
-            state.counter = eval(`${state.counter} ${action.operator} ${action.step}`);
+            // The payload field in action is reserved for 
+            // transmitting payload to reducers
+            state.counter =
+                eval(`${state.counter} ${action.payload.operator} ${action.payload.step}`);
+            console.log("Stepper through Redux Toolkit");
         },
         toggle(state) { // 
             state.showCounter = !state.showCounter;
@@ -78,6 +83,22 @@ const counterReducer = (state = initialState, action) => {
     return state;
 }
 
-const store = createStore(counterReducer);
+// Redux
+// const store = createStore(counterReducer);
+
+// Redux Toolkit
+// const store = createStore(counterSlice.reducer); // Acceptable due 
+// to the small size of the store (only a single state in the store) 
+const store = configureStore({ // Configure global state
+    // reducer: { // main reducer for the global state
+    // counter: counterSlice.reducer
+
+    reducer: counterSlice.reducer
+    // Map reducers here
+    // }
+});
+
+// Slice actions
+export const counterActions = counterSlice.actions;
 
 export default store;

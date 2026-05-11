@@ -1,6 +1,7 @@
 import { connect, useDispatch, useSelector } from 'react-redux';
 import classes from './Counter.module.css';
 import { Component } from 'react';
+import { counterActions } from '../store/index';
 
 const Counter = () => {
   //access directly the redux store
@@ -17,16 +18,30 @@ const Counter = () => {
 
   // Our top level dispatchers
   const incrementHandler = () => {
-    ourDispatcher({ type: 'increment' });
+    // Redux way
+    // ourDispatcher({ type: 'increment' });
+
+    // Redux toolkit way
+    ourDispatcher(counterActions.increment());
   }
   const decrementHandler = () => {
-    ourDispatcher({ type: 'decrement' });
+    // ourDispatcher({ type: 'decrement' });
+
+    // Redux toolkit way
+    ourDispatcher(counterActions.decrement());
   }
 
   const op = '*';
   const stepVal = 7;
   const stepper = () => {
-    ourDispatcher({ type: 'stepper', operator: op, step: stepVal });
+    // Redux way
+    // ourDispatcher({ type: 'stepper', operator: op, step: stepVal });
+
+    // Redux toolkit way
+    ourDispatcher(counterActions.stepper({
+      operator: op,
+      step: stepVal
+    }));
   }
 
   // decrementHandler() {
@@ -36,7 +51,9 @@ const Counter = () => {
   // }
 
   const toggleCounterHandler = () => {
-    ourDispatcher({ type: 'toggle' })
+    // ourDispatcher({ type: 'toggle' })
+    // Redux toolkit way
+    ourDispatcher(counterActions.toggle());
   };
 
   return (
