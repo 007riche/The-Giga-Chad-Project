@@ -1,15 +1,22 @@
 import { connect, useDispatch, useSelector } from 'react-redux';
 import classes from './Counter.module.css';
 import { Component } from 'react';
-import { counterActions } from '../store/index';
+import { counterActions, authActions } from '../store/index';
 
 const Counter = () => {
   //access directly the redux store
   // Here, we didn't need to use useContext()
   // Redux is in charge of it, in different way, but in charge 
   // useSelector give access to part of the global state managed by redux store
-  const counter = useSelector(state => state.counter);
-  const showCounter = useSelector(state => state.showCounter);
+  // const counter = useSelector(state => state.counter); // Valid for 
+  // // redux and single slice redux tk style
+  // const showCounter = useSelector(state => state.showCounter);
+  const counter = useSelector(state => state.counter.counter); // Migrated 
+  // to Multislice store where state is the global store,
+  //  the 1st 'counter' is the slice the 2nd 'counter' is the local state
+
+  const showCounter = useSelector(state => state.counter.showCounter);
+
 
   // useDispatch returns a dispatching functing that can 
   // be use to dispatch an action to the store

@@ -1,6 +1,7 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
 import { createStore } from "redux";
-const initialState = {
+
+const initialCounterState = {
     counter: 0,
     showCounter: true,
 };
@@ -9,7 +10,7 @@ const initialState = {
 // To create and manage parts of the store
 const counterSlice = createSlice({
     name: 'counter', // one state of the store
-    initialState: initialState, // initialization
+    initialState: initialCounterState, // initialization
     reducers: { // define all the reducers on that state
         // they receive the state, and the action even 
         // though some of them are omitted because not used
@@ -37,7 +38,22 @@ const counterSlice = createSlice({
     }
 });
 
-const counterReducer = (state = initialState, action) => {
+const initialAuthState = {
+    isAuthenticated: false
+};
+
+const authSlice = createSlice({
+    name: 'authentication',
+    initialState: initialAuthState,
+    reducers: {
+        login(state) { state.isAuthenticated = true; },
+        logout(state) { state.isAuthenticated = false; }
+    }
+});
+
+
+// Redux
+const counterReducer = (state = initialCounterState, action) => {
     if (action.type === 'increment') {
         // Like mutating here
         // state.counter = ;
@@ -90,15 +106,17 @@ const counterReducer = (state = initialState, action) => {
 // const store = createStore(counterSlice.reducer); // Acceptable due 
 // to the small size of the store (only a single state in the store) 
 const store = configureStore({ // Configure global state
-    // reducer: { // main reducer for the global state
-    // counter: counterSlice.reducer
+    reducer: { // main reducer for the global state
 
-    reducer: counterSlice.reducer
-    // Map reducers here
-    // }
+        // reducer: counterSlice.reducer // Single slice
+        // Map all your reducers here
+        counter: counterSlice.reducer,
+        auth: authSlice.reducer,
+    }
 });
 
 // Slice actions
 export const counterActions = counterSlice.actions;
+export const authActions = authSlice.actions;
 
 export default store;
