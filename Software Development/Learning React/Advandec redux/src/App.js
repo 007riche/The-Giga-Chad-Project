@@ -4,12 +4,13 @@ import Layout from './components/Layout/Layout';
 import Products from './components/Shop/Products';
 
 // For manipulating env content
-import 'dotenv/config';
+// import 'dotenv/config'; // not working
 import { useEffect } from 'react';
+import { DB_LINK } from './environ';
 
 // DB link
 
-const DB_LINK = process.env.DB_LINK;
+// const DB_LINK = process.env.DB_LINK;
 const CART_DB_LINK = DB_LINK + 'cart.json';
 
 function App() {

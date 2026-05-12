@@ -11,6 +11,8 @@
 *.rar
 /*/.env
 *.env
+/*/environ.js
+*/environ.js
 
 #Local three js library, included localy to load it and use it
 /Software Development/Learning three js/three.js-master/

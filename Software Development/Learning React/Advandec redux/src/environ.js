@@ -1,0 +1,1 @@
+export const DB_LINK = 'https://test-94e1d-default-rtdb.europe-west1.firebasedatabase.app/';
