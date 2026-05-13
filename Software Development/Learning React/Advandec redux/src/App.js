@@ -9,10 +9,9 @@ import Notification from './components/UI/Notification/Notification';
 import { Fragment, useEffect } from 'react';
 import { DB_LINK } from './environ';
 import { uiActions } from './store/ui-slice';
-import { sendCartData } from './store/cart-slice';
+import { fetchCartData, sendCartData } from './store/cart-actions';
 
 // DB link
-
 // const DB_LINK = process.env.DB_LINK;
 const CART_DB_LINK = DB_LINK + 'cart.json';
 
@@ -34,6 +33,12 @@ function App() {
     }
     dispatch(sendCartData(cart)); //
   }, [cart, dispatch]);
+
+  useEffect(() => {
+    if (cart.stateChanged) {
+      dispatch(fetchCartData());
+    }
+  }, [dispatch]);
 
   return (
     <Fragment>
