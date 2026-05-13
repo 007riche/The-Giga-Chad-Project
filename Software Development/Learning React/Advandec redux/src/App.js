@@ -9,6 +9,7 @@ import Notification from './components/UI/Notification/Notification';
 import { Fragment, useEffect } from 'react';
 import { DB_LINK } from './environ';
 import { uiActions } from './store/ui-slice';
+import { sendCartData } from './store/cart-slice';
 
 // DB link
 
@@ -26,41 +27,12 @@ function App() {
   // side effect out side of the store, to keep the store clean,
   // to avoid breaking immutability of the global store
   useEffect(() => {
-    const sendCartData = async () => {
-      dispatch(uiActions.showNotification({
-        status: 'pending',
-        title: 'Sending',
-        message: 'Sending cart data',
-      }));
-      const response = await fetch(
-        CART_DB_LINK, {
-        method: 'PUT',
-        body: JSON.stringify(cart),
-      });
-
-      if (!response.ok) {
-        throw new Error("Something went wrong when sending data.");
-      }
-
-      // const responseData = response.json();
-      dispatch(uiActions.showNotification({
-        status: 'success',
-        title: 'Success',
-        message: 'Sent cart data successfully',
-      }));
-    }
-
+    // Migrated to action creators
     if (isInitialLoading) {
       isInitialLoading = false;
       return;
     }
-    sendCartData().catch((error) => {
-      dispatch(uiActions.showNotification({
-        status: 'error',
-        title: 'Error',
-        message: 'Sending cart data failed',
-      }));
-    });
+    dispatch(sendCartData(cart)); //
   }, [cart, dispatch]);
 
   return (
