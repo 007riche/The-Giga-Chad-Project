@@ -22,7 +22,9 @@ const appRouter = createBrowserRouter([  // Takes an array of routes
     children: [
       // { path: '/', element: <HomePage /> }, // starting with '/',
       // absolute path
-      { path: '', element: <HomePage /> }, // starting with '/', 
+      // { path: '', element: <HomePage /> }, // starting with '/',
+      { index: true, element: <HomePage /> }, //set the 
+      // default page when root path is active 
       { path: 'products', element: <ProductPage /> }, // relative path
       // Dynamic route, ":" is used to indicate the part 
       // of the route which is dynamic, all settings are passed as 
