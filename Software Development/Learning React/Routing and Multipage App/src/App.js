@@ -16,19 +16,21 @@ import DetailsPage from "./pages/Details";
 
 const appRouter = createBrowserRouter([  // Takes an array of routes
   {
-    path: '/',
+    path: '/home',
     element: <RootLayout />,
     errorElement: <ErrorPage />,
     children: [
-      { path: '/', element: <HomePage /> },
-      { path: '/products', element: <ProductPage /> },
+      // { path: '/', element: <HomePage /> }, // starting with '/',
+      // absolute path
+      { path: '', element: <HomePage /> }, // starting with '/', 
+      { path: 'products', element: <ProductPage /> }, // relative path
       // Dynamic route, ":" is used to indicate the part 
       // of the route which is dynamic, all settings are passed as 
       // an object, which can be received as route param 
       // by using the useParams hook,
       // dynamic fields name (productId here) have
       //  to math when access in the component
-      { path: '/products/:productId/details', element: <DetailsPage /> }
+      { path: 'products/:productId/details', element: <DetailsPage /> }
     ],
   },
 ]);
