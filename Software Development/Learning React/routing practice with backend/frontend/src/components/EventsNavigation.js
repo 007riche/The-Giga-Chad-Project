@@ -7,7 +7,7 @@ function EventsNavigation() {
       <nav>
         <ul className={classes.list}>
           <li>
-            <NavLink to="/" className={({ isActive }) =>
+            <NavLink to="/events" className={({ isActive }) =>
               isActive ? classes.active : undefined
             }
               end>All Events</NavLink>
