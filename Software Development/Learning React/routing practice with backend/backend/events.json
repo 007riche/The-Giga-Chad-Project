@@ -1,1 +1,12 @@
-{"events":[{"title":"Splunkers","image":"https://imgs.search.brave.com/DmCXwM6a2Ibmnxk8y2c96sZpR5YQUv8mGGzIKVzrev4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jb25m/LnNwbHVuay5jb20v/Y29udGVudC9kYW0v/c3BsdW5rLWNvbmYv/MjAyNi9ob21lcGFn/ZS9jMjYtd2hvLWlz/LWNvbmYtZm9yLnBu/Zw","date":"2026-05-30","description":"Upcoming Splunk conference in san fransisco.","id":"822172de-a207-4053-9b53-b581dd7cf94e"},{"title":"RUST CON","image":"https://imgs.search.brave.com/RIDOCUGkKjHCmd2OdAwQAFA-tXGXdkxlT1cBesnoNYs/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9ydXN0/Y29uZi5jb20vd3At/Y29udGVudC91cGxv/YWRzLzIwMjYvMDMv/cmYlRTIlODAlOTNs/b2dvLXByaW1hcnkt/cnVzdC5zdmc","date":"2026-05-08","description":"xcvbberf ezrf ezrg ezgr","id":"922979c8-749f-4807-95e1-60ec8c405573"},{"id":"e1","title":"A dummy event","date":"2023-02-22","image":"https://blog.hubspot.de/hubfs/Germany/Blog_images/Optimize_Marketing%20Events%20DACH%202021.jpg","description":"Join this amazing event and connect with fellow developers."}]}
+{
+  "events": [
+    {
+      "title": "A new event",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/M%C3%BCnchen_Panorama.JPG/1024px-M%C3%BCnchen_Panorama.JPG",
+      "date": "2022-10-01",
+      "description": "Some awesome event!",
+      "id": "2a42fcc4-ea21-4bdd-abf6-c40006dc66a9"
+    }
+  ],
+  "users": []
+}
