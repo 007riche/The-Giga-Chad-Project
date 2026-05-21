@@ -24,11 +24,12 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import RootPage from './pages/Root';
 import HomePage from './pages/Home';
 import EventsPage, { loader as eventsLoader } from './pages/Events';
-import EventDetailPage, { loader as eventDetailLoader } from './pages/EventDetails';
-import NewEventPage, { action as newEventAction } from './pages/NewEvent';
+import EventDetailPage, { loader as eventDetailLoader, action as deleteEventAction } from './pages/EventDetails';
+import NewEventPage from './pages/NewEvent';
 import EditEventPage from './pages/EditEvent';
 import EventsRootPage from './pages/EventsRoot';
 import ErrorPage from './pages/Error';
+import { action as handleEventAction } from './components/EventForm';
 
 const router = createBrowserRouter([
   {
@@ -48,13 +49,21 @@ const router = createBrowserRouter([
             id: 'event-details',
             loader: eventDetailLoader,
             children: [
-              { index: true, element: <EventDetailPage />, },
-              { path: 'edit', element: <EditEventPage /> },
+              {
+                index: true,
+                element: <EventDetailPage />,
+                action: deleteEventAction,
+              },
+              {
+                path: 'edit', element: <EditEventPage />,
+                action: handleEventAction,
+              },
             ]
           },
           {
             path: 'new', element: <NewEventPage />,
-            action: newEventAction,
+            action: handleEventAction, // just as loader,
+            // what are other settable props?...
           },
         ],
       },
