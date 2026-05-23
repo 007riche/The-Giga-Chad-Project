@@ -32,12 +32,17 @@ import ErrorPage from './pages/Error';
 import { action as handleEventAction } from './components/EventForm';
 import NewsletterPage, { action as newsletterAction } from './pages/Newsletter';
 import AuthenticationPage, { action as authAction } from './pages/Authentication';
+import { action as logoutAction } from './pages/Logout';
+import { tokenLoader, checkAuthLoader } from './pages/util/auth';
+
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <RootPage />,
     errorElement: <ErrorPage />,
+    id: 'root',
+    loader: tokenLoader,
     children: [
       { index: true, element: <HomePage /> },
       {
@@ -59,6 +64,7 @@ const router = createBrowserRouter([
               {
                 path: 'edit', element: <EditEventPage />,
                 action: handleEventAction,
+                loader: checkAuthLoader, // Hiding unauth route access
               },
             ]
           },
@@ -66,6 +72,7 @@ const router = createBrowserRouter([
             path: 'new', element: <NewEventPage />,
             action: handleEventAction, // just as loader,
             // what are other settable props?...
+            loader: checkAuthLoader, // Hiding unauth route access
           },
         ],
       },
@@ -78,6 +85,11 @@ const router = createBrowserRouter([
         path: 'auth',
         element: <AuthenticationPage />,
         action: authAction
+      },
+      {
+        path: 'logout',
+        action: logoutAction, // Just to logout and clean up app data
+        // from previous auth seession
       },
     ],
   },

@@ -52,5 +52,12 @@ export async function action({ request }) {
     });
   }
 
+  const responseData = await response.json();
+  const token = responseData.token;
+
+  // store the token in the local storage
+  localStorage.setItem('token', token);
+
+
   return redirect("/");
 }
