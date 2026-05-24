@@ -9,6 +9,7 @@ more trick and tips...
 
 ### Build process
 ```$> npm run build```
+https://create-react-app.dev/docs/deployment/
 <br />
 
 ### Uploading
