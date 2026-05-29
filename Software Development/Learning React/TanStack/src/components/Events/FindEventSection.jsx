@@ -7,16 +7,23 @@ import EventItem from './EventItem.jsx';
 
 export default function FindEventSection() {
   const searchElement = useRef();
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState();
 
-  const { data, isPending, isError, error } = useQuery({
+  const { data, isError, error, isLoading } = useQuery({
     queryKey: ['events', { search: searchTerm }], // here the keys are kind 
     // of compound elements (a kind of tuple), the first part 'events' unchanged
     // and second dynamic ${search}, to uniquely identify each query, 
     // since the results of all of these queries are cached. 
     // using only 'events' as key would use 
     // the cached results of the query in the NewEventsSection also identified by 'events' 
-    queryFn: () => fetchEvents(searchTerm),
+    queryFn: ({ signal }) => fetchEvents({ signal, searchTerm }), // signal is already provided
+    // enabled: searchTerm !== '', // using the initial state to '' (useState('')),
+    // This lead to the content being replaced by the loading indicator 
+    // leading the result section behave like the search input field is empty and
+    //  active (in focus css state or keystroke) 
+    // an to use isLoading (to know if there is an exchange of data), 
+    // instead of the isPending (waiting for the results) 
+    enabled: searchTerm !== undefined,
   });
 
   function handleSubmit(event) {
@@ -32,7 +39,7 @@ export default function FindEventSection() {
       message={error.info?.message || 'Failed to fecth events.'} />
   }
 
-  if (isPending) {
+  if (isLoading) {
     content = <LoadingIndicator />
   }
 
