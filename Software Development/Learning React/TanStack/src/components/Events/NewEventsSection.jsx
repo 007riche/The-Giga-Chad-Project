@@ -2,13 +2,18 @@ import LoadingIndicator from '../UI/LoadingIndicator.jsx';
 import ErrorBlock from '../UI/ErrorBlock.jsx';
 import EventItem from './EventItem.jsx';
 import { useQuery } from '@tanstack/react-query';
-import { fetchEvents } from '../../util.js';
+import { fetchEvents } from '../../util/http.js';
 
 export default function NewEventsSection() {
 
   const { data, isPending, isError, error } = useQuery({
     queryKey: ['events'],
     queryFn: fetchEvents,
+    staleTime: 5000, // in ms, The time period after which a 
+    // new request is sent to get updated values
+    // gcTime: 1000, // in ms, the period time after 
+    // which the garbage collector purge the existing data, 
+    // (here the values in the destructured 'data' constant)
   });
 
   let content;
