@@ -7,8 +7,8 @@ import { fetchEvents } from '../../util/http.js';
 export default function NewEventsSection() {
 
   const { data, isPending, isError, error } = useQuery({
-    queryKey: ['events'],
-    queryFn: fetchEvents,
+    queryKey: ['events', { max: 3 }],
+    queryFn: ({ signal, queryKey }) => fetchEvents({ signal, ...queryKey[1] }),
     staleTime: 5000, // in ms, The time period after which a 
     // new request is sent to get updated values
     // gcTime: 1000, // in ms, the period time after 

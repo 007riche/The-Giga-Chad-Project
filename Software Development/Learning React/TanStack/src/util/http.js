@@ -6,10 +6,16 @@ export const queryClient = new QueryClient();
 
 export async function fetchEvents({ signal // this is provided by @tanstack/query 
     // to manage the continuity of the request.
-    , searchTerm }) {
+    , searchTerm, // the search term
+    max // maximum number of events to fetch
+}) {
     let url = BASE_URL;
-    if (searchTerm) {
+    if (searchTerm && max) {
+        url += '?search=' + searchTerm + '&max=' + max;
+    } else if (searchTerm) {
         url += '?search=' + searchTerm;
+    } else if (max) {
+        url += '?max=' + max;
     }
 
     const response = await fetch(url, { signal: signal });
