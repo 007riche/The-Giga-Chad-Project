@@ -1,10 +1,13 @@
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import {
+  Link, redirect, useNavigate, useParams,
+  // useNavigation, useSubmit
+} from 'react-router-dom';
 
 import Modal from '../UI/Modal.jsx';
 import EventForm from './EventForm.jsx';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { fetchEvent, queryClient, updateEvent } from '../../util/http.js';
-import LoadingIndicator from '../UI/LoadingIndicator.jsx';
+// import LoadingIndicator from '../UI/LoadingIndicator.jsx';
 import ErrorBlock from '../UI/ErrorBlock.jsx';
 
 export default function EditEvent() {
@@ -12,9 +15,17 @@ export default function EditEvent() {
 
   const params = useParams();
 
-  const { data, isPending, isError, error } = useQuery({
+  // React router approach
+  // const submit = useSubmit();
+  // const { state } = useNavigation();
+
+
+  const { data, isError, error } = useQuery({
+    // const { data, isPending, isError, error } = useQuery({
+
     queryKey: ['events', params.id], // cached results
-    queryFn: ({ signal }) => fetchEvent({ signal, id: params.id })
+    queryFn: ({ signal }) => fetchEvent({ signal, id: params.id }),
+    staleTime: 5000, // Automatically refetch data after 5 seconds, add 
   });
 
   const { mutate } = useMutation({
@@ -48,6 +59,9 @@ export default function EditEvent() {
   function handleSubmit(formData) {
     mutate({ id: params.id, event: formData });
     navigate('../');
+
+    // react router approach
+    // submit(formData, { method: 'PUT'}); // The wanted mutation is updation
   }
 
   function handleClose() {
@@ -56,13 +70,13 @@ export default function EditEvent() {
 
   let content;
 
-  if (isPending) {
-    content = (
-      <div className='center'>
-        <LoadingIndicator />
-      </div>
-    );
-  }
+  // if (isPending) {
+  //   content = (
+  //     <div className='center'>
+  //       <LoadingIndicator />
+  //     </div>
+  //   );
+  // }
 
   if (isError) {
     content = <>
@@ -80,14 +94,20 @@ export default function EditEvent() {
   }
 
   if (data) {
-    content = (<EventForm inputData={data} onSubmit={handleSubmit}>
-      <Link to="../" className="button-text">
-        Cancel
-      </Link>
-      <button type="submit" className="button">
-        Update
-      </button>
-    </EventForm>);
+    content = (
+      <EventForm inputData={data} onSubmit={handleSubmit}>
+        {/* {state === 'submitting' ? <p>Updating...</p> : (
+          <> */}
+        <Link to="../" className="button-text">
+          Cancel
+        </Link>
+        <button type="submit" className="button">
+          Update
+        </button>
+        {/* </>
+        )} */}
+      </EventForm>
+    );
   }
 
   return (
@@ -95,4 +115,21 @@ export default function EditEvent() {
       {content}
     </Modal>
   );
+}
+
+export function loader({ params }) {
+  return queryClient.fetchQuery({
+    queryKey: ['events', params.id],
+    queryFn: ({ signal }) => fetchEvent({ signal, id: params }),
+  });
+}
+
+// React router approach // but 
+// I will keep the ReactQuery(@TanStack/Query) approach with the optimistic approach
+export async function action({ request, params }) {
+  const formData = await request.formData();
+  const updateEventData = Object.fromEntries(formData);
+  await updateEvent({ id: params.id, event: updateEventData });
+  await queryClient.invalidateQueries(['events'])
+  return redirect('../');
 }
