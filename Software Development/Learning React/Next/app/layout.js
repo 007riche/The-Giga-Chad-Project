@@ -1,6 +1,6 @@
 import './globals.css'
 
-export const metadata = {
+export const metadata /* Reserved name*/ = {
   title: 'NextJS Course App',
   description: 'Your first NextJS app!',
 };
