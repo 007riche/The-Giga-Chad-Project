@@ -5,4 +5,4 @@ sqlite db pack: `better-sqlite3`
 
 #### Another reserved filname
 
-`loading`
+`loading, error, not-found`
