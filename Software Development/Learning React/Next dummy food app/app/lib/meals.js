@@ -23,7 +23,7 @@ export async function saveMeal(meal) {
     const extension = meal.image.name.split('.').pop();
     const fileName = `${meal.slug}.${extension}`;
 
-    const stream = fs.createWriteStream(`public/images/${filename}`);
+    const stream = fs.createWriteStream(`public/images/${fileName}`);
     const bufferedImage = await meal.image.arrayBuffer();
     stream.write(Buffer.from(bufferedImage), (error) => {
         if (error) {
