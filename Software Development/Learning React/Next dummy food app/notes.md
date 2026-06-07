@@ -6,3 +6,8 @@ sqlite db pack: `better-sqlite3`
 #### Another reserved filname
 
 `loading, error, not-found`
+
+some packages:
+
+- slugify: for slug related operations
+- XSS: for protection against xss vuln

@@ -1,5 +1,8 @@
 'use server';
 
+import { redirect } from "next/navigation";
+import { saveMeal } from "./meals";
+
 export async function shareMeal(formData) {
     // 'use server' // Requiered other functions and To explicitly garanty 
     // it will run on the server
@@ -18,4 +21,7 @@ export async function shareMeal(formData) {
         creator: formData.get('name'),
         creator_email: formData.get('email'),
     }
+
+    await saveMeal(meal);
+    redirect("/meals");
 }
