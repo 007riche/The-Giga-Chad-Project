@@ -15,7 +15,7 @@ export async function generateMetadata({
         notFound();
     }
 
-    console.log(meal);
+    // console.log(meal);
 
     return {
         title: meal.title,
