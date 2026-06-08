@@ -4,6 +4,25 @@ import classes from "./page.module.css";
 import { getMeal } from "@/app/lib/meals";
 import { notFound } from "next/navigation";
 
+// The function tasked to generate metadata dynamically
+// It has to be called like this
+export async function generateMetadata({
+    params // Can also recive all the loaded data from the route
+}) {
+    const meal = await getMeal(params.mealSlug);
+
+    if (!meal) {
+        notFound();
+    }
+
+    console.log(meal);
+
+    return {
+        title: meal.title,
+        description: meal.summary,
+    };
+}
+
 export default async function MealDetailPage({ params }) {
     const meal = await getMeal(params.mealSlug);
 

@@ -4,6 +4,14 @@ import MealsGrid from "../components/meals/meals-grid";
 import { getAllMeals } from "../lib/meals";
 import { Suspense } from "react";
 
+
+// Static metadata, for the dynamic one, checkout the page.js in 
+// the dynamic [mealSlug]
+export const metadata = {
+    title: 'All meals | NextLevel Food',
+    description: 'Delicious meals, shared by a food-loving community.',
+};
+
 async function Meals() {
     const meals = await getAllMeals();
     return <MealsGrid meals={meals} />
