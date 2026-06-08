@@ -11,3 +11,7 @@ some packages:
 
 - slugify: for slug related operations
 - XSS: for protection against xss vuln
+
+### Build the project for production environment
+
+`$> npm run build`
