@@ -2,6 +2,7 @@
 
 import { redirect } from "next/navigation";
 import { saveMeal } from "./meals";
+import { revalidatePath } from "next/cache";
 
 function isInvalidText(text) {
     return !text || text.trim === '';
@@ -42,5 +43,10 @@ export async function shareMeal(prevState, formData) {
     }
 
     await saveMeal(meal);
+    revalidatePath('/meals'
+        // , 'layout' // extra config for granular control, here if set,
+        // only the layout will be revalidated 
+    ); // Revalidate a route to get up to date data loaded on 
+    // that path or route,
     redirect("/meals");
 }
