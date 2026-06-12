@@ -46,18 +46,18 @@ export default function HomePage(
 // For the new ingested data 
 // (Here the newly created meetups) at least if the revalidation 
 // IS NOT SET timely or on event
-export async function getStaticProps() {
-    /**
-     * The code here is executed on the server side like
-     * a server action 
-    */
-    return {
-        props: {
-            meetups: DUMMY_MEETUP,
-        },
-        revalidate: 1
-    };
-}
+// export async function getStaticProps() {
+//     /**
+//      * The code here is executed on the server side like
+//      * a server action 
+//     */
+//     return {
+//         props: {
+//             meetups: DUMMY_MEETUP,
+//         },
+//         revalidate: 1
+//     };
+// }
 
 // Same kind as the getStaticProps
 // But runs for every income request
@@ -67,8 +67,13 @@ export async function getServerSideProps(constext) {
     /**
          * The code here is executed on the server side like
          * a server action 
+         * 
+         * I will keep this strategy, and comment getStaticProps()
         */
 
+    // The req and res parts of the automatically recived context param 
+    // is only with the getServerSidePros not with the getStaticProps()
+    // Eventhough both recive that context object as argument
     const req = constext.req;
     const res = constext.res;
 
