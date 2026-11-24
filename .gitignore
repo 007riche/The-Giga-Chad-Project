@@ -14,6 +14,7 @@ node_modules/
 *.env
 /*/environ.js
 */environ.js
+*/.DS_Store
 
 
 #Local three js library, included localy to load it and use it
