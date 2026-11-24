@@ -1,20 +1,20 @@
 # Default ignored files
 /shelf/
-/.idea/
+**/.idea
 /Software Development/Learning Java/.idea/
 
-/*/.git
+**/.git
 node_modules/
-/*/.angular
-/*/.vscode
+**/.angular
+**/.vscode
 *.zip
-*.rar
-*.next*
-/*/.env
-*.env
+**/*.rar
+**/.next*
+**/.env
+**/*.env
 /*/environ.js
-*/environ.js
-*/.DS_Store
+**/environ.js
+**/.DS_Store
 
 
 #Local three js library, included localy to load it and use it
